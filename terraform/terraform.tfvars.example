@@ -1,0 +1,43 @@
+# Copy to terraform.tfvars and adjust. terraform.tfvars is gitignored.
+
+# --- Azure target -----------------------------------------------------------
+subscription_id = "ddb0c900-8251-41b7-aa03-38b51de2f598"
+location        = "eastus"
+
+# --- Required assessment variables ---------------------------------------------
+env      = "dev"
+replicas = 0 # 0 = scale-to-zero (free grant friendly); 1 = worker always on
+
+max_replicas = 3
+
+# --- Image (REQUIRED - build from the repo Dockerfile, push to a PUBLIC registry) ---
+# docker build -t docker.io/<you>/event-service:1.0.0 ..
+# docker push  docker.io/<you>/event-service:1.0.0
+image = "docker.io/your-user/event-service:1.0.0"
+
+# --- Private registry (optional; leave unset for a public image) --------------
+# registry_server   = "ghcr.io"
+# registry_username  = "your-user"
+# registry_password  = "ghp_xxx"   # better: pass via TF_VAR_registry_password
+
+# --- App config -----------------------------------------------------------------
+container_port      = 8080
+processing_delay_ms = 1000
+
+# --- Sizing (Consumption plan; smallest = cheapest) --------------------------
+cpu    = 0.25
+memory = "0.5Gi"
+
+# --- Dummy secret ---------------------------------------------------------------
+dummy_secret_data = {
+  API_KEY       = "dummy-api-key-do-not-use-in-prod"
+  WEBHOOK_TOKEN = "dummy-webhook-token"
+}
+
+# --- Logging caps -------------------------------------------------------------
+log_analytics_retention_days = 30
+log_analytics_daily_quota_gb = 0.5
+
+tags = {
+  owner = "platform-eng-assessment"
+}

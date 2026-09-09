@@ -1,0 +1,214 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-12-15T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_health",
+      "parentId": "fld_supplyos",
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "url": "http://127.0.0.1:8080/health",
+      "name": "GET /health",
+      "description": "Check service health status and uptime",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1702598400000,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
+      "_id": "req_ready",
+      "parentId": "fld_supplyos",
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "url": "http://127.0.0.1:8080/ready",
+      "name": "GET /ready",
+      "description": "Check if the background worker is running",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1702598300000,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_event_1",
+      "parentId": "fld_supplyos",
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "url": "http://127.0.0.1:8080/events",
+      "name": "POST /events - New Event",
+      "description": "Create a new event (should return 202 Accepted)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"event_id\": \"evt_001\",\n  \"payload\": {\n    \"user_id\": \"user_123\",\n    \"action\": \"purchase\",\n    \"amount\": 99.99,\n    \"timestamp\": \"2025-12-15T10:30:00Z\"\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702598200000,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_event_duplicate",
+      "parentId": "fld_supplyos",
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "url": "http://127.0.0.1:8080/events",
+      "name": "POST /events - Duplicate Event (409)",
+      "description": "Try to create the same event again (should return 409 Conflict)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"event_id\": \"evt_001\",\n  \"payload\": {\n    \"user_id\": \"user_123\",\n    \"action\": \"purchase\",\n    \"amount\": 99.99,\n    \"timestamp\": \"2025-12-15T10:30:00Z\"\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702598100000,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_event_2",
+      "parentId": "fld_supplyos",
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "url": "http://127.0.0.1:8080/events",
+      "name": "POST /events - Event 2",
+      "description": "Create another event with different ID",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"event_id\": \"evt_002\",\n  \"payload\": {\n    \"user_id\": \"user_456\",\n    \"action\": \"signup\",\n    \"email\": \"user@example.com\"\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702598000000,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
+      "_id": "req_create_event_3",
+      "parentId": "fld_supplyos",
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "url": "http://127.0.0.1:8080/events",
+      "name": "POST /events - Event 3",
+      "description": "Create another event",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"event_id\": \"evt_003\",\n  \"payload\": {\n    \"order_id\": \"ORD-12345\",\n    \"items\": [\n      {\"sku\": \"ITEM-001\", \"quantity\": 2},\n      {\"sku\": \"ITEM-002\", \"quantity\": 1}\n    ],\n    \"total\": 249.97\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702597900000,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
+      "_id": "req_invalid_no_event_id",
+      "parentId": "fld_supplyos",
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "url": "http://127.0.0.1:8080/events",
+      "name": "POST /events - Missing event_id (400)",
+      "description": "Test validation - missing event_id (should return 400)",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"payload\": {\n    \"test\": \"data\"\n  }\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702597800000,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
+      "_id": "req_invalid_body",
+      "parentId": "fld_supplyos",
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "url": "http://127.0.0.1:8080/events",
+      "name": "POST /events - Invalid JSON (400)",
+      "description": "Test validation - invalid JSON body (should return 400)",
+      "method": "POST",
+      "body": {
+        "mimeType": "text/plain",
+        "text": "{\"event_id\": \"evt_invalid\", invalid json here}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1702597700000,
+      "isPrivate": false,
+      "_type": "request"
+    },
+    {
+      "_id": "fld_supplyos",
+      "parentId": "wrk_supplyos",
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "name": "Event Service",
+      "description": "API endpoints for the Event Service",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1702598400000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_supplyos",
+      "parentId": null,
+      "modified": 1702598400000,
+      "created": 1702598400000,
+      "name": "Event Service",
+      "description": "Event processing service with async workers and idempotency",
+      "scope": "collection",
+      "_type": "workspace"
+    }
+  ]
+}

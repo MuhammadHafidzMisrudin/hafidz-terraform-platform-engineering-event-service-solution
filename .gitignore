@@ -1,0 +1,16 @@
+# Compiled binaries / build output
+event-service
+*.exe
+*.out
+*.test
+dist/
+bin/
+
+# Go
+vendor/
+
+# Editor / OS cruft
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,22 @@
+# VCS
+.git
+.gitignore
+
+# Prebuilt / local binaries that must never enter the build context
+# (the repo ships a macOS build named "event-service")
+event-service
+*.exe
+*.out
+dist/
+bin/
+
+# Container + docs
+Dockerfile
+.dockerignore
+README.md
+insomnia-collection.json
+
+# Editor / OS cruft
+.idea/
+.vscode/
+.DS_Store
